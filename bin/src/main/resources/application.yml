@@ -1,0 +1,127 @@
+spring:
+  main:
+    web-application-type: none # WebApplication Type Setting (none, servlet, reactive)
+    allow-bean-definition-overriding: true  # 빈 Overriding 설정
+    
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://112.172.129.203:13306/vuptess?serverTimezone=Asia/Seoul
+    username: tess
+    password: tess1234
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: none    # (create, create-drop, update 절대 사용금지, none/validate 사용)
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy	 # org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl (컬럼명 그대로)
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+      
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+  task:
+    scheduling:
+      pool:
+        size: 10
+
+
+schedule-job:
+  stat-real:
+    delay: '2000'
+  stat-15min:
+    delay: '0 */5 * * * *'
+  stat-hour:
+    delay: '0 3 */1 * * *' 
+  stat-day:
+    delay: '0 10 0 * * *'
+  stat-month:
+    delay: '0 20 0 1 * *'
+  stat-year:
+    delay: '0 0 1 1 1 ?'
+
+## Server Setting
+server: 
+  port: 8080
+  servlet:
+    context-path: /
+
+
+# command라인에서 profiles value 할당
+## java -jar 파일명.jar --spring.profiles.active=profiles값 (택1)
+## java -Dspring.profiles.active=profiles값 -jar 파일명.jar (택2)
+# Configuration profiles value 할당
+## Edit Configurations > Run/Debug Configurations > Active Profiles 값 할당
+---
+
+
+spring:
+    profiles: local
+server:
+    port: 8080
+
+logging:
+  level:
+    root: error
+    org:
+      hibernate:
+        type: trace		# (trace, info) SQL Query = ?  value값 보기 => trace
+    com:
+      vup: trace
+  pattern:
+    console: '%d [%level] %c{1.} [%t] %m%n'
+    file: '%d [%level] %c{1.} [%t] %m%n'
+  file: appLog.log
+      
+    
+---
+
+
+spring:
+    profiles: dev
+server:
+    port: 8081
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: info		# SQL Query = ? => value값 보기
+    com:
+      vup: 
+        tess: DEBUG
+    
+---
+
+spring:
+    profiles: product
+server:
+    port: 80
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: info		# SQL Query = ? => value값 보기
+    com:
+      vup: 
+        tess: DEBUG
+  pattern:
+    console: '%d [%level] %c{1.} [%t] %m%n'
+    file: '%d [%level] %c{1.} [%t] %m%n'
+  file: appLog.log
+    

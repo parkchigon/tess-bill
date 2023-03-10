@@ -1,0 +1,6 @@
+ERROR 22-04-27 11:16:18[WorkerThread-101] [BillWorkerThread:81] - Exception 
+java.lang.NullPointerException: null
+	at com.vup.tess.bill.service.work.BillWorkerThread$RealWorker.run(BillWorkerThread.java:68)
+ERROR 22-04-27 11:27:10[WorkerThread-101] [BillWorkerThread:81] - Exception 
+java.lang.NullPointerException: null
+	at com.vup.tess.bill.service.work.BillWorkerThread$RealWorker.run(BillWorkerThread.java:68)

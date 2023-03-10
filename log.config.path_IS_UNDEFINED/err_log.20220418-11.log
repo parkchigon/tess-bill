@@ -1,0 +1,4 @@
+ERROR 22-04-18 11:56:14[scheduling-1] [SqlExceptionHelper:142] - Table 'vuptess.tbl_settlement_sale' doesn't exist
+ERROR 22-04-18 11:56:15[scheduling-1] [SqlExceptionHelper:142] - Table 'vuptess.tbl_settlement_sale' doesn't exist
+ERROR 22-04-18 11:57:14[scheduling-1] [SqlExceptionHelper:142] - Column 'deposit_cd' not found.
+ERROR 22-04-18 11:57:15[scheduling-1] [SqlExceptionHelper:142] - Column 'deposit_cd' not found.
